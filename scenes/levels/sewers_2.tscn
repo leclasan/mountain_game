@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://btypetsuqgdd8"]
+
+[ext_resource type="Script" uid="uid://dajyhv38krgqv" path="res://scripts/levels/level.gd" id="1_xchie"]
+[ext_resource type="PackedScene" uid="uid://batludaaw1o6r" path="res://scenes/player/player.tscn" id="1_y2fte"]
+[ext_resource type="PackedScene" uid="uid://bq3p5vikakhbs" path="res://scenes/enemies/enemy_1.tscn" id="2_7gesn"]
+[ext_resource type="PackedScene" uid="uid://llfo4nqiyx4" path="res://scenes/enviroment/explosive_barrel.tscn" id="3_orjd3"]
+[ext_resource type="Texture2D" uid="uid://do0oekwdbl8rs" path="res://scripts/icon.svg" id="4_au25n"]
+[ext_resource type="Texture2D" uid="uid://c0ujx1vgsx21f" path="res://black.jpg" id="6_2ulsf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_isqir"]
+size = Vector2(20, 565)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y1e21"]
+size = Vector2(456, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c4dpu"]
+size = Vector2(1146, 45)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h8nlw"]
+size = Vector2(20, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tmu1n"]
+size = Vector2(20, 67)
+
+[node name="Sewers2" type="Node2D" unique_id=1242870041]
+script = ExtResource("1_xchie")
+next_level_1 = "res://scenes/levels/sewers_1.tscn"
+
+[node name="Player" parent="." unique_id=1262118459 instance=ExtResource("1_y2fte")]
+position = Vector2(73, 577)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1484152777]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1620506637]
+position = Vector2(0, 230)
+shape = SubResource("RectangleShape2D_isqir")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=409644936]
+position = Vector2(1154, 249.5)
+shape = SubResource("RectangleShape2D_isqir")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=1904867282]
+position = Vector2(931, 523)
+shape = SubResource("RectangleShape2D_y1e21")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=358829594]
+position = Vector2(576, 637.5)
+shape = SubResource("RectangleShape2D_c4dpu")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D" unique_id=988641073]
+position = Vector2(604, 596.5)
+shape = SubResource("RectangleShape2D_h8nlw")
+
+[node name="Enemy1" parent="." unique_id=72019392 instance=ExtResource("2_7gesn")]
+position = Vector2(1047, 590)
+
+[node name="ExplosiveBarrel" parent="." unique_id=1670976250 instance=ExtResource("3_orjd3")]
+position = Vector2(937, 213)
+collision_layer = 3
+
+[node name="ExplosiveBarrel2" parent="." unique_id=1400961427 instance=ExtResource("3_orjd3")]
+position = Vector2(966, 144)
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=207479397]
+position = Vector2(574, 639)
+scale = Vector2(8.921875, 0.3906249)
+texture = ExtResource("4_au25n")
+
+[node name="Icon2" type="Sprite2D" parent="." unique_id=958650007]
+position = Vector2(934, 521)
+scale = Vector2(3.5781245, 0.13281216)
+texture = ExtResource("4_au25n")
+
+[node name="Icon3" type="Sprite2D" parent="." unique_id=357221457]
+position = Vector2(1151, 241.62502)
+scale = Vector2(0.21093708, 4.16211)
+texture = ExtResource("4_au25n")
+
+[node name="Icon4" type="Sprite2D" parent="." unique_id=46949817]
+position = Vector2(-1.9998779, 211)
+scale = Vector2(0.21093708, 4.16211)
+texture = ExtResource("4_au25n")
+
+[node name="LevelExit1" type="Area2D" parent="." unique_id=681216791]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelExit1" unique_id=240416372]
+position = Vector2(0, 561.5)
+shape = SubResource("RectangleShape2D_tmu1n")
+
+[node name="Black" type="Sprite2D" parent="LevelExit1" unique_id=840927392]
+position = Vector2(1.0000005, 567.5)
+scale = Vector2(0.039711192, 0.13898909)
+texture = ExtResource("6_2ulsf")
+
+[connection signal="body_entered" from="LevelExit1" to="." method="on_body_entered_exit_1"]

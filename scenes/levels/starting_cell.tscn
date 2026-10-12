@@ -1,0 +1,158 @@
+[gd_scene format=3 uid="uid://beonq8b18m4q"]
+
+[ext_resource type="Texture2D" uid="uid://do5j1gwwbtwv8" path="res://blank.png" id="1_j6la3"]
+[ext_resource type="Script" uid="uid://dajyhv38krgqv" path="res://scripts/levels/level.gd" id="1_kbd0s"]
+[ext_resource type="PackedScene" uid="uid://batludaaw1o6r" path="res://scenes/player/player.tscn" id="1_xcbe6"]
+[ext_resource type="Texture2D" uid="uid://c0ujx1vgsx21f" path="res://black.jpg" id="2_kbd0s"]
+[ext_resource type="Texture2D" uid="uid://do0oekwdbl8rs" path="res://scripts/icon.svg" id="3_uggtc"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_isqir"]
+distance = -23.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_isqir"]
+size = Vector2(25.25, 342.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kbd0s"]
+size = Vector2(75.625, 78.375)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y1e21"]
+size = Vector2(304, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c4dpu"]
+size = Vector2(247, 20)
+
+[sub_resource type="LabelSettings" id="LabelSettings_isqir"]
+font_size = 29
+
+[node name="StartingCell" type="Node2D" unique_id=1904659835]
+script = ExtResource("1_kbd0s")
+next_level_1 = "res://scenes/levels/cell-sewers.tscn"
+
+[node name="White" type="Sprite2D" parent="." unique_id=2049406229]
+position = Vector2(160, 126)
+scale = Vector2(0.54844606, 0.056164384)
+texture = ExtResource("1_j6la3")
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=1588306765]
+position = Vector2(1140, 324.00003)
+scale = Vector2(0.20312573, 5.0312505)
+texture = ExtResource("3_uggtc")
+
+[node name="Icon4" type="Sprite2D" parent="." unique_id=1748540431]
+position = Vector2(596.00006, 649)
+rotation = 1.5707964
+scale = Vector2(0.20312573, 9.125001)
+texture = ExtResource("3_uggtc")
+
+[node name="Icon2" type="Sprite2D" parent="." unique_id=40408]
+position = Vector2(15.000122, 324.00003)
+scale = Vector2(0.20312573, 5.0312505)
+texture = ExtResource("3_uggtc")
+
+[node name="Icon3" type="Sprite2D" parent="." unique_id=2084141997]
+position = Vector2(578, 279.625)
+scale = Vector2(0.5781251, 0.6308595)
+texture = ExtResource("3_uggtc")
+
+[node name="Icon5" type="Sprite2D" parent="." unique_id=965416816]
+position = Vector2(715, 174)
+scale = Vector2(0.5781251, 0.6308595)
+texture = ExtResource("3_uggtc")
+
+[node name="Icon6" type="Sprite2D" parent="." unique_id=1817981404]
+position = Vector2(724.00006, 371)
+scale = Vector2(0.5781251, 0.6308595)
+texture = ExtResource("3_uggtc")
+
+[node name="Icon7" type="Sprite2D" parent="." unique_id=993160740]
+position = Vector2(907, 462.00003)
+scale = Vector2(0.5781251, 0.6308595)
+texture = ExtResource("3_uggtc")
+
+[node name="Icon8" type="Sprite2D" parent="." unique_id=1408424415]
+position = Vector2(1070, 569)
+scale = Vector2(0.5781251, 0.6308595)
+texture = ExtResource("3_uggtc")
+
+[node name="Icon9" type="Sprite2D" parent="." unique_id=1763952353]
+position = Vector2(500.00003, 105)
+scale = Vector2(0.5781251, 0.6308595)
+texture = ExtResource("3_uggtc")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=605175760]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1425072856]
+position = Vector2(479, 613)
+shape = SubResource("WorldBoundaryShape2D_isqir")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=489991242]
+position = Vector2(13, 486)
+shape = SubResource("RectangleShape2D_isqir")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=534110009]
+position = Vector2(1140, 485)
+shape = SubResource("RectangleShape2D_isqir")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=731744108]
+position = Vector2(13, 162)
+shape = SubResource("RectangleShape2D_isqir")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D" unique_id=858893969]
+position = Vector2(1070, 567)
+shape = SubResource("RectangleShape2D_kbd0s")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="StaticBody2D" unique_id=1134909920]
+position = Vector2(908, 465)
+shape = SubResource("RectangleShape2D_kbd0s")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="StaticBody2D" unique_id=1309076011]
+position = Vector2(725, 370)
+shape = SubResource("RectangleShape2D_kbd0s")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="StaticBody2D" unique_id=1254447926]
+position = Vector2(578, 279)
+shape = SubResource("RectangleShape2D_kbd0s")
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="StaticBody2D" unique_id=218743253]
+position = Vector2(502, 103)
+shape = SubResource("RectangleShape2D_kbd0s")
+
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="StaticBody2D" unique_id=2050044216]
+position = Vector2(716, 173)
+shape = SubResource("RectangleShape2D_kbd0s")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D" unique_id=920050204]
+position = Vector2(1140, 160)
+shape = SubResource("RectangleShape2D_isqir")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="StaticBody2D" unique_id=976804354]
+position = Vector2(164, 124)
+shape = SubResource("RectangleShape2D_y1e21")
+one_way_collision = true
+
+[node name="Player" parent="." unique_id=1262118459 instance=ExtResource("1_xcbe6")]
+position = Vector2(397, 574)
+
+[node name="LevelExit1s" type="Area2D" parent="." unique_id=493924591]
+collision_mask = 3
+
+[node name="Black" type="Sprite2D" parent="LevelExit1s" unique_id=1553784253]
+position = Vector2(155, 0)
+scale = Vector2(0.46028885, 0.0433213)
+texture = ExtResource("2_kbd0s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelExit1s" unique_id=1390205056]
+position = Vector2(153, -8)
+shape = SubResource("RectangleShape2D_c4dpu")
+
+[node name="Label" type="Label" parent="." unique_id=1589258850]
+offset_left = 768.0
+offset_top = 61.0
+offset_right = 1075.0
+offset_bottom = 187.0
+text = "Move with arrow keys
+
+Press C to jump"
+label_settings = SubResource("LabelSettings_isqir")
+
+[connection signal="body_entered" from="LevelExit1s" to="." method="on_body_entered_exit_1"]

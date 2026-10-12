@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://batludaaw1o6r"]
+
+[ext_resource type="Script" uid="uid://df036ojm3jj0v" path="res://scripts/player/player.gd" id="1_8afob"]
+[ext_resource type="Texture2D" uid="uid://do0oekwdbl8rs" path="res://scripts/icon.svg" id="2_dovo2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_isqir"]
+size = Vector2(22, 60)
+
+[node name="Player" type="CharacterBody2D" unique_id=1262118459]
+z_index = 50
+collision_layer = 2
+script = ExtResource("1_8afob")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1619552734]
+shape = SubResource("RectangleShape2D_isqir")
+
+[node name="RopeDetect" type="RayCast2D" parent="." unique_id=229005108]
+visible = false
+target_position = Vector2(250, 0)
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=1132828532]
+position = Vector2(-1.1920929e-07, 0.5000019)
+scale = Vector2(0.17187501, 0.47656253)
+texture = ExtResource("2_dovo2")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1567391086]
+collision_layer = 0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=698990520]
+shape = SubResource("RectangleShape2D_isqir")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]

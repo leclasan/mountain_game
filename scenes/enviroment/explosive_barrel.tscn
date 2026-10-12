@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://llfo4nqiyx4"]
+
+[ext_resource type="Script" uid="uid://dfafau2l8bh5f" path="res://scripts/enviroment/explosive_barrel.gd" id="1_cibbg"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y1e21"]
+bounce = 0.25
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_isqir"]
+radius = 23.345236
+
+[node name="ExplosiveBarrel" type="RigidBody2D" unique_id=1670976250]
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_y1e21")
+can_sleep = false
+contact_monitor = true
+max_contacts_reported = 10
+script = ExtResource("1_cibbg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=514619450]
+shape = SubResource("CircleShape2D_isqir")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

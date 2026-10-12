@@ -1,0 +1,141 @@
+[gd_scene format=3 uid="uid://c8bsmdtquoi4h"]
+
+[ext_resource type="Script" uid="uid://dajyhv38krgqv" path="res://scripts/levels/level.gd" id="1_5v7wc"]
+[ext_resource type="PackedScene" uid="uid://bq3p5vikakhbs" path="res://scenes/enemies/enemy_1.tscn" id="2_mh6nv"]
+[ext_resource type="Texture2D" uid="uid://c0ujx1vgsx21f" path="res://black.jpg" id="3_wndrt"]
+[ext_resource type="Texture2D" uid="uid://do0oekwdbl8rs" path="res://scripts/icon.svg" id="4_jd16s"]
+[ext_resource type="PackedScene" uid="uid://batludaaw1o6r" path="res://scenes/player/player.tscn" id="5_y416r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_isqir"]
+size = Vector2(499, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y1e21"]
+size = Vector2(57, 459)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c4dpu"]
+size = Vector2(195, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h8nlw"]
+size = Vector2(28, 259.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ekrr3"]
+size = Vector2(20, 661)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3hkj3"]
+size = Vector2(20, 493)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tmu1n"]
+size = Vector2(122.5, 20)
+
+[node name="Sewers1" type="Node2D" unique_id=1410153691]
+script = ExtResource("1_5v7wc")
+next_level_1 = "res://scenes/levels/cell-sewers.tscn"
+next_level_2 = "res://scenes/levels/sewers_2.tscn"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=800870160]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=783379063]
+position = Vector2(900, 642)
+shape = SubResource("RectangleShape2D_isqir")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=787589663]
+position = Vector2(252, 646)
+shape = SubResource("RectangleShape2D_isqir")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=902270832]
+position = Vector2(792, 230.5)
+shape = SubResource("RectangleShape2D_y1e21")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=1308808801]
+position = Vector2(1052.5, 153)
+shape = SubResource("RectangleShape2D_c4dpu")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D" unique_id=857191797]
+position = Vector2(969, 272.25)
+shape = SubResource("RectangleShape2D_h8nlw")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D" unique_id=940979405]
+position = Vector2(0, 320.5)
+shape = SubResource("RectangleShape2D_ekrr3")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="StaticBody2D" unique_id=1883944629]
+position = Vector2(1142, 404.5)
+shape = SubResource("RectangleShape2D_3hkj3")
+
+[node name="Enemy1" parent="." unique_id=72019392 instance=ExtResource("2_mh6nv")]
+position = Vector2(829, 607)
+
+[node name="Label" type="Label" parent="." unique_id=271979553]
+offset_left = 254.0
+offset_top = 391.0
+offset_right = 294.0
+offset_bottom = 414.0
+text = "bounce on enemies
+leave C pressed to bounce higher"
+
+[node name="LevelExit1" type="Area2D" parent="." unique_id=1149759632]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelExit1" unique_id=1545614345]
+position = Vector2(577.75, 656)
+shape = SubResource("RectangleShape2D_tmu1n")
+
+[node name="Black" type="Sprite2D" parent="LevelExit1" unique_id=2146280416]
+position = Vector2(575, 646)
+scale = Vector2(0.18953069, 0.019855596)
+texture = ExtResource("3_wndrt")
+
+[node name="LevelExit2" type="Area2D" parent="." unique_id=1910051410]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelExit2" unique_id=1139148037]
+position = Vector2(1149.25, 63.50006)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_tmu1n")
+
+[node name="Black" type="Sprite2D" parent="LevelExit2" unique_id=739035946]
+position = Vector2(1146.5, 53.499996)
+rotation = 1.5707964
+scale = Vector2(0.18953069, 0.019855596)
+texture = ExtResource("3_wndrt")
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=188226897]
+position = Vector2(791.5, 230)
+scale = Vector2(0.44531253, 3.5937502)
+texture = ExtResource("4_jd16s")
+
+[node name="Icon2" type="Sprite2D" parent="." unique_id=624526257]
+position = Vector2(252, 645.5)
+scale = Vector2(3.921875, 0.16406235)
+texture = ExtResource("4_jd16s")
+
+[node name="Icon3" type="Sprite2D" parent="." unique_id=1847844984]
+position = Vector2(898, 643)
+scale = Vector2(3.921875, 0.16406235)
+texture = ExtResource("4_jd16s")
+
+[node name="Icon4" type="Sprite2D" parent="." unique_id=866807134]
+position = Vector2(1054.5, 152)
+scale = Vector2(1.5390632, 0.21874997)
+texture = ExtResource("4_jd16s")
+
+[node name="Icon5" type="Sprite2D" parent="." unique_id=846187831]
+position = Vector2(968.5, 282.5)
+scale = Vector2(0.24218827, 1.8359376)
+texture = ExtResource("4_jd16s")
+
+[node name="Icon6" type="Sprite2D" parent="." unique_id=592150044]
+position = Vector2(2.000061, 322)
+scale = Vector2(0.24218827, 5.1875005)
+texture = ExtResource("4_jd16s")
+
+[node name="Icon7" type="Sprite2D" parent="." unique_id=259579263]
+position = Vector2(1146, 394)
+scale = Vector2(0.24218827, 4)
+texture = ExtResource("4_jd16s")
+
+[node name="Player" parent="." unique_id=1262118459 instance=ExtResource("5_y416r")]
+position = Vector2(426, 595)
+
+[connection signal="body_entered" from="LevelExit1" to="." method="on_body_entered_exit_1"]
+[connection signal="body_entered" from="LevelExit2" to="." method="on_body_entered_exit_2"]
