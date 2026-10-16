@@ -15,3 +15,9 @@ func _process(delta: float) -> void:
 		direction *= -1
 	else:
 		global_position.x += speed * direction * delta
+
+
+func _on_damage_area_body_entered(body: Node2D) -> void:
+	if body is explosive_barrel:
+		body.queue_free()
+		queue_free()

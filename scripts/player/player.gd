@@ -9,6 +9,8 @@ const  speed_cap = 600
 const  jump_speed = -630
 var jump_buffer = 0.0
 const buffer_time = 65
+var last_time_walking = 0.0
+var last_time_on_wall = 0.0
 const walljump_speed = -630
 const  walljump_x_speed = 1000
 var walljump_dir = 0
@@ -33,6 +35,7 @@ func move():
 			if Input.is_action_just_pressed("jump") or (Time.get_ticks_msec() - jump_buffer) <= buffer_time:
 				state = States.JUMP
 			elif not is_on_floor():
+				last_time_walking = Time.get_ticks_msec()
 				state = States.FALLING
 			walljump_dir = 0
 			
@@ -48,10 +51,13 @@ func move():
 				velocity.x = 0
 		States.FALLING:
 			if Input.is_action_just_pressed("jump"):
-				jump_buffer = Time.get_ticks_msec()
+				if (Time.get_ticks_msec()-last_time_walking) <= 50:
+					state = States.JUMP
+				else:
+					jump_buffer = Time.get_ticks_msec()
 			if is_on_floor():
 				state = States.WALKING
-			elif is_on_wall() and (Input.is_action_just_pressed("jump") or (Time.get_ticks_msec() - jump_buffer) <= buffer_time):
+			elif (is_on_wall() or (Time.get_ticks_msec() - last_time_on_wall <= 75)) and (Input.is_action_just_pressed("jump") or (Time.get_ticks_msec() - jump_buffer) <= buffer_time):
 				state = States.WALLJUMP
 			else:
 				velocity.y += gravity * get_process_delta_time()
@@ -59,6 +65,7 @@ func move():
 					velocity.y = fall_velocity_cap
 			if is_on_wall():
 				walljump_dir = 0
+				last_time_on_wall = Time.get_ticks_msec()
 			
 			var direction = Input.get_axis("left", "right")
 			
@@ -86,6 +93,7 @@ func move():
 
 func rope_detect_rotate():
 	var rope_direction = Input.get_vector("left", "right", "up", "down")
+	rope_direction = sign(rope_direction)
 
 
 func _on_area_entered(area: Area2D) -> void:

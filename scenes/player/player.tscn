@@ -15,7 +15,6 @@ script = ExtResource("1_8afob")
 shape = SubResource("RectangleShape2D_isqir")
 
 [node name="RopeDetect" type="RayCast2D" parent="." unique_id=229005108]
-visible = false
 target_position = Vector2(250, 0)
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=1132828532]

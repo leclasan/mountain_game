@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+class_name explosive_barrel
+
 var player_impulse_force = 750
 
 func _ready() -> void:

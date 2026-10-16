@@ -32,7 +32,10 @@ shape = SubResource("RectangleShape2D_y1e21")
 
 [node name="FrontRayCast" type="RayCast2D" parent="." unique_id=1071381674]
 target_position = Vector2(45, 0)
+collide_with_areas = true
 
 [node name="DownRayCast" type="RayCast2D" parent="." unique_id=129198327]
 position = Vector2(32, 0)
 target_position = Vector2(0, 37)
+
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

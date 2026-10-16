@@ -14,12 +14,12 @@ func _process(delta: float) -> void:
 
 func on_body_entered_exit_1(body):
 	if body is player:
-		get_tree().change_scene_to_file(next_level_1)
+		get_tree().call_deferred("change_scene_to_file", next_level_1)
 
 func on_body_entered_exit_2(body):
 	if body is player:
-		get_tree().change_scene_to_file(next_level_2)
+		get_tree().call_deferred("change_scene_to_file", next_level_2)
 
 func on_body_entered_exit_3(body):
 	if body is player:
-		get_tree().change_scene_to_file(next_level_3)
+		get_tree().call_deferred("change_scene_to_file", next_level_3)
