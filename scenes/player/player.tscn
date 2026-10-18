@@ -2,9 +2,26 @@
 
 [ext_resource type="Script" uid="uid://df036ojm3jj0v" path="res://scripts/player/player.gd" id="1_8afob"]
 [ext_resource type="Texture2D" uid="uid://do0oekwdbl8rs" path="res://scripts/icon.svg" id="2_dovo2"]
+[ext_resource type="Texture2D" uid="uid://f1180t77rsr0" path="res://assets/Particles/PNG (Transparent)/dirt_01.png" id="3_gmlin"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_isqir"]
 size = Vector2(22, 60)
+
+[sub_resource type="Curve" id="Curve_gmlin"]
+_limits = [-200.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 10), 0.0, 0.0, 0, 0, Vector2(0.7, 10), 0.0, 0.0, 0, 0, Vector2(0.8, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), -112.71552, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_gcupy"]
+curve = SubResource("Curve_gmlin")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0owmy"]
+particle_flag_disable_z = true
+particle_flag_inherit_emitter_scale = true
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = 9.999997
+linear_accel_curve = SubResource("CurveTexture_gcupy")
 
 [node name="Player" type="CharacterBody2D" unique_id=1262118459]
 z_index = 50
@@ -16,6 +33,7 @@ shape = SubResource("RectangleShape2D_isqir")
 
 [node name="RopeDetect" type="RayCast2D" parent="." unique_id=229005108]
 target_position = Vector2(250, 0)
+collide_with_areas = true
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=1132828532]
 position = Vector2(-1.1920929e-07, 0.5000019)
@@ -27,5 +45,12 @@ collision_layer = 0
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=698990520]
 shape = SubResource("RectangleShape2D_isqir")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1290440507]
+scale = Vector2(0.05, 0.05)
+emitting = false
+amount = 1
+texture = ExtResource("3_gmlin")
+process_material = SubResource("ParticleProcessMaterial_0owmy")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]

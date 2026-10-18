@@ -17,13 +17,17 @@ var walljump_dir = 0
 
 const  gravity = 1900
 const fall_velocity_cap = 3000
-enum States {WALKING, FALLING, JUMP, WALLJUMP} 
+enum States {WALKING, FALLING, JUMP, WALLJUMP, ROPE} 
 var state = States.FALLING
+
+var rope_pos = Vector2.ZERO
 
 func _ready() -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
+	
+	rope_detect_rotate()
 	
 	move()
 	
@@ -90,10 +94,20 @@ func move():
 			velocity.x = walljump_x_speed * sign(get_wall_normal().x)
 			walljump_dir = -sign(get_wall_normal().x)
 			state = States.FALLING
+		States.ROPE:
+			position = rope_pos
+			state = States.JUMP
+			velocity = Vector2.ZERO
 
 func rope_detect_rotate():
 	var rope_direction = Input.get_vector("left", "right", "up", "down")
-	rope_direction = sign(rope_direction)
+	rope_direction = sign(rope_direction) * Vector2(10000,10000) * global_position
+	if rope_direction:
+		rope_detect.look_at(rope_direction)
+	if Input.is_action_just_pressed("rope"):
+		if rope_detect.is_colliding():
+			rope_pos = rope_detect.get_collision_point()
+			state = States.ROPE
 
 
 func _on_area_entered(area: Area2D) -> void:
