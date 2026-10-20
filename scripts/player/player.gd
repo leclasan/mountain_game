@@ -21,6 +21,7 @@ enum States {WALKING, FALLING, JUMP, WALLJUMP, ROPE}
 var state = States.FALLING
 
 var rope_pos = Vector2.ZERO
+var rope_speed = 500.0
 
 func _ready() -> void:
 	pass
@@ -95,13 +96,18 @@ func move():
 			walljump_dir = -sign(get_wall_normal().x)
 			state = States.FALLING
 		States.ROPE:
-			position = rope_pos
-			state = States.JUMP
+			position.x = move_toward(position.x, rope_pos.x, rope_speed * get_process_delta_time())
+			position.y = move_toward(position.y, rope_pos.y, rope_speed * get_process_delta_time())
+			if position >= rope_pos - Vector2(1, 1) and position <= rope_pos + Vector2(1, 1):
+				state = States.FALLING
 			velocity = Vector2.ZERO
 
 func rope_detect_rotate():
 	var rope_direction = Input.get_vector("left", "right", "up", "down")
-	rope_direction = sign(rope_direction) * Vector2(10000,10000) * global_position
+	if (rope_direction.x != 0.0) and (rope_direction.y != 0.0):
+		rope_direction = sign(rope_direction) * Vector2(10000,10000)
+	else:
+		rope_direction = sign(rope_direction) * Vector2(10000, 10000) * global_position
 	if rope_direction:
 		rope_detect.look_at(rope_direction)
 	if Input.is_action_just_pressed("rope"):
