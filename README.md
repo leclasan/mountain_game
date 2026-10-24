@@ -7,9 +7,9 @@ The game is about climbing a mountain filled with mosters, but you arent a warri
 
 # Controls
 
-use c to jump
-use x to use the rope
-use arrows to move 
+-use c to jump
+-use x to use the rope
+-use arrows to move 
 
 # Resources
 
