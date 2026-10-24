@@ -8,8 +8,7 @@ class_name player
 const  speed = 4750
 const  speed_cap = 600
 const  jump_speed = -630
-var jump_buffer = 0.0
-const buffer_time = 65
+
 var last_time_walking = 0.0
 var last_time_on_wall = 0.0
 const walljump_speed = -630
@@ -24,10 +23,14 @@ var state = States.FALLING
 var rope_pos = Vector2.ZERO
 var rope_speed = 750.0
 
+var rope_buffer = 0.0
+var jump_buffer = 0.0
+const buffer_time = 65
+
 func _ready() -> void:
 	pass
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	
 	rope_detect_rotate()
 	
@@ -114,8 +117,9 @@ func move():
 		States.ROPE:
 			position.x = move_toward(position.x, rope_pos.x, rope_speed * get_process_delta_time())
 			position.y = move_toward(position.y, rope_pos.y, rope_speed * get_process_delta_time())
-			if position >= rope_pos - Vector2(5, 5) and position <= rope_pos + Vector2(5, 5):
+			if (rope_pos - position).length() <= 5 :
 				state = States.FALLING
+				print("fall")
 			velocity = Vector2.ZERO
 
 func rope_detect_rotate():
@@ -130,6 +134,13 @@ func rope_detect_rotate():
 		if rope_detect.is_colliding():
 			rope_pos = rope_detect.get_collision_point()
 			state = States.ROPE
+		else:
+			rope_buffer = Time.get_ticks_msec()
+	elif Time.get_ticks_msec()-rope_buffer < buffer_time:
+		if rope_detect.is_colliding():
+			rope_pos = rope_detect.get_collision_point()
+			state = States.ROPE
+	
 
 
 func _on_area_entered(area: Area2D) -> void:

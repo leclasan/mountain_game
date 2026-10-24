@@ -1,33 +1,59 @@
 [gd_scene format=3 uid="uid://bq3p5vikakhbs"]
 
-[ext_resource type="Texture2D" uid="uid://do0oekwdbl8rs" path="res://icon.svg" id="1_db084"]
 [ext_resource type="Script" uid="uid://r5gcoysy703a" path="res://scripts/enemies/enemy_1.gd" id="1_lsxte"]
+[ext_resource type="Texture2D" uid="uid://bpxuh7yjxau0n" path="res://assets/Spritesheets/spritesheet-enemies-default.png" id="2_lsxte"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jv4hc"]
+atlas = ExtResource("2_lsxte")
+region = Rect2(130, 195, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j430y"]
+atlas = ExtResource("2_lsxte")
+region = Rect2(195, 195, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_isqir"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jv4hc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j430y")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_isqir"]
-size = Vector2(36, 4)
+size = Vector2(53.5, 8.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1e21"]
-size = Vector2(47, 35)
+size = Vector2(55, 35)
 
 [node name="Enemy1" type="Node2D" unique_id=72019392]
 script = ExtResource("1_lsxte")
 
-[node name="Icon" type="Sprite2D" parent="." unique_id=1109064125]
-scale = Vector2(0.375, 0.390625)
-texture = ExtResource("1_db084")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1167310122]
+position = Vector2(1, -9)
+scale = Vector2(0.96875, 0.96875)
+sprite_frames = SubResource("SpriteFrames_isqir")
+autoplay = "default"
+frame_progress = 0.74110407
+flip_h = true
 
 [node name="BounceArea" type="Area2D" parent="." unique_id=1886403387 groups=["bounce"]]
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BounceArea" unique_id=1545208673]
-position = Vector2(1, -23)
+position = Vector2(0.25, -18.75)
 shape = SubResource("RectangleShape2D_isqir")
 
 [node name="DamageArea" type="Area2D" parent="." unique_id=862140493 groups=["damage"]]
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=1050851598]
-position = Vector2(-0.5, 4.5)
+position = Vector2(0.5, 4.5)
 shape = SubResource("RectangleShape2D_y1e21")
 
 [node name="FrontRayCast" type="RayCast2D" parent="." unique_id=1071381674]
