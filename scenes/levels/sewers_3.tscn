@@ -14,6 +14,7 @@ size = Vector2(61, 41)
 [node name="Sewers3" type="Node2D" unique_id=237829141]
 script = ExtResource("1_yt2eu")
 next_level_1 = "res://scenes/levels/sewers_2.tscn"
+next_level_2 = "res://scenes/levels/rope_shrine_level.tscn"
 
 [node name="Player" parent="." unique_id=1262118459 instance=ExtResource("1_xibpl")]
 position = Vector2(65, 585)
@@ -41,6 +42,8 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelExit2" unique_id=1165028908]
 position = Vector2(12.5, 601.5)
 shape = SubResource("RectangleShape2D_hxxnj")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1649488513]
 
 [connection signal="body_entered" from="LevelExit1" to="." method="on_body_entered_exit_1"]
 [connection signal="body_entered" from="LevelExit2" to="." method="on_body_entered_exit_2"]

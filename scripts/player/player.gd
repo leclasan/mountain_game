@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 class_name player
 
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var rope_detect: RayCast2D = $RopeDetect
 
 const  speed = 4750
@@ -21,7 +22,7 @@ enum States {WALKING, FALLING, JUMP, WALLJUMP, ROPE}
 var state = States.FALLING
 
 var rope_pos = Vector2.ZERO
-var rope_speed = 500.0
+var rope_speed = 750.0
 
 func _ready() -> void:
 	pass
@@ -47,12 +48,20 @@ func move():
 			var direction = Input.get_axis("left", "right")
 			
 			if direction:
+				animated_sprite.play("walking")
+				if velocity.x < 0:
+					animated_sprite.flip_h = true
+				else:
+					animated_sprite.flip_h = false
+				
 				velocity.x +=  direction * speed * get_process_delta_time()
 				if velocity.x > speed_cap:
 					velocity.x = speed_cap
 				if velocity.x < -speed_cap:
 					velocity.x = -speed_cap
 			else:
+				animated_sprite.play("idle")
+				
 				velocity.x = 0
 		States.FALLING:
 			if Input.is_action_just_pressed("jump"):
@@ -85,6 +94,13 @@ func move():
 					velocity.x = move_toward(velocity.x, 0, get_process_delta_time()*speed)
 			else:
 				velocity.x = move_toward(velocity.x, 0, get_process_delta_time()*speed)
+			
+			animated_sprite.play("falling")
+			if velocity.x < 0:
+				animated_sprite.flip_h = true
+			else:
+				animated_sprite.flip_h = false
+			
 		States.JUMP:
 			jump_buffer = 0
 			velocity.y = jump_speed
@@ -98,16 +114,16 @@ func move():
 		States.ROPE:
 			position.x = move_toward(position.x, rope_pos.x, rope_speed * get_process_delta_time())
 			position.y = move_toward(position.y, rope_pos.y, rope_speed * get_process_delta_time())
-			if position >= rope_pos - Vector2(1, 1) and position <= rope_pos + Vector2(1, 1):
+			if position >= rope_pos - Vector2(5, 5) and position <= rope_pos + Vector2(5, 5):
 				state = States.FALLING
 			velocity = Vector2.ZERO
 
 func rope_detect_rotate():
 	var rope_direction = Input.get_vector("left", "right", "up", "down")
 	if (rope_direction.x != 0.0) and (rope_direction.y != 0.0):
-		rope_direction = sign(rope_direction) * Vector2(10000,10000)
+		rope_direction = sign(rope_direction) * Vector2(100000,100000)
 	else:
-		rope_direction = sign(rope_direction) * Vector2(10000, 10000) * global_position
+		rope_direction = sign(rope_direction) * Vector2(100000, 100000) * global_position
 	if rope_direction:
 		rope_detect.look_at(rope_direction)
 	if Input.is_action_just_pressed("rope"):

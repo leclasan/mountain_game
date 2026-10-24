@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bflk5408v3spr"]
+
+[ext_resource type="Script" uid="uid://d0nuagxlujqrn" path="res://scripts/shrine.gd" id="1_mvp2r"]
+[ext_resource type="Texture2D" uid="uid://do0oekwdbl8rs" path="res://icon.svg" id="2_0m684"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_isqir"]
+size = Vector2(141, 214)
+
+[node name="RopeShrine" type="Area2D" unique_id=1987759900]
+collision_mask = 2
+script = ExtResource("1_mvp2r")
+trial_scene = "res://scenes/levels/rope_trial.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1929436356]
+shape = SubResource("RectangleShape2D_isqir")
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=168909109]
+position = Vector2(-0.4999957, 0.5000019)
+scale = Vector2(1.0859376, 1.6953125)
+texture = ExtResource("2_0m684")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -13,7 +13,7 @@ config_version=5
 config/name="mountain_game"
 run/main_scene="uid://beonq8b18m4q"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://scripts/icon.svg"
+config/icon="res://icon.svg"
 
 [display]
 
