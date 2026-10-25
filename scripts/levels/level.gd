@@ -3,6 +3,7 @@ extends Node2D
 @onready var tile_map: TileMap = $TileMap
 @onready var player: player = $Player
 @onready var camera: Camera2D = $Camera2D
+@onready var pause_menu: Control = $Camera2D/PauseMenu
 
 @export var next_level_1: String
 @export var next_level_2: String
@@ -50,3 +51,11 @@ func set_camera_y_boundaries():
 func set_camera_x_boundaries():
 	var tile_rect = tile_map.get_used_rect()
 	camera.limit_top = tile_map.map_to_local(Vector2i(tile_rect.position)).x * tile_map.scale.x
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"):
+		pause()
+
+func pause():
+	pause_menu.show()
+	get_tree().paused = true

@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://c23e23vk3vuuj"]
+
+[ext_resource type="PackedScene" uid="uid://b8nb3evs8uo0y" path="res://scenes/UI/input_changer.tscn" id="1_t8pki"]
+
+[node name="Settings" type="Control" unique_id=792805742]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=151245689]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.28235295, 0.28235295, 0.28235295, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect" unique_id=638940989]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer" unique_id=1030093171]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 50
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="InputChanger" parent="ColorRect/VBoxContainer" unique_id=2090438565 instance=ExtResource("1_t8pki")]
+layout_mode = 2
+action = "left"
+
+[node name="InputChanger2" parent="ColorRect/VBoxContainer" unique_id=1289364859 instance=ExtResource("1_t8pki")]
+layout_mode = 2
+action = "right"
+
+[node name="InputChanger3" parent="ColorRect/VBoxContainer" unique_id=1582088781 instance=ExtResource("1_t8pki")]
+layout_mode = 2
+action = "up"
+
+[node name="InputChanger4" parent="ColorRect/VBoxContainer" unique_id=285284585 instance=ExtResource("1_t8pki")]
+layout_mode = 2
+action = "down"
+
+[node name="InputChanger5" parent="ColorRect/VBoxContainer" unique_id=734703534 instance=ExtResource("1_t8pki")]
+layout_mode = 2
+action = "jump"
+
+[node name="InputChanger6" parent="ColorRect/VBoxContainer" unique_id=878235843 instance=ExtResource("1_t8pki")]
+layout_mode = 2
+action = "rope"
+
+[node name="InputChanger7" parent="ColorRect/VBoxContainer" unique_id=1616862628 instance=ExtResource("1_t8pki")]
+layout_mode = 2
+action = "pause"

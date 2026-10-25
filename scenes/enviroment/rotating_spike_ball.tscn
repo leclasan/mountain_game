@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://b7vga85chsgb1"]
+
+[ext_resource type="Script" uid="uid://b21k0vcptsrm8" path="res://scripts/enviroment/rotating_spike_ball.gd" id="1_u2m82"]
+[ext_resource type="Texture2D" uid="uid://bpxuh7yjxau0n" path="res://assets/Spritesheets/spritesheet-enemies-default.png" id="2_6juki"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_isqir"]
+radius = 30.066593
+
+[node name="RotatingSpikeBall" type="Area2D" unique_id=725199661]
+collision_layer = 24
+collision_mask = 10
+script = ExtResource("1_u2m82")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1241107137]
+position = Vector2(170, 0)
+shape = SubResource("CircleShape2D_isqir")
+
+[node name="SpritesheetEnemiesDefault" type="Sprite2D" parent="." unique_id=619188000]
+position = Vector2(169, -1)
+texture = ExtResource("2_6juki")
+region_enabled = true
+region_rect = Rect2(455, 194, 64, 65)

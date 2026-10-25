@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://b8nb3evs8uo0y"]
+
+[ext_resource type="Script" uid="uid://cv2rvn54mbpn" path="res://scripts/UI/input_changer.gd" id="1_tp4sx"]
+
+[node name="InputChanger" type="HBoxContainer" unique_id=2090438565]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
+script = ExtResource("1_tp4sx")
+
+[node name="ActionLabel" type="Label" parent="." unique_id=953399635]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+text = "Left"
+
+[node name="AddKeyButton" type="Button" parent="." unique_id=1853850824]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Press to add an key"
+
+[node name="RemoveKeysButton" type="Button" parent="." unique_id=1808389957]
+layout_mode = 2
+text = "Press to eliminate keys"
+
+[connection signal="pressed" from="AddKeyButton" to="." method="_on_add_key_button_pressed"]
+[connection signal="pressed" from="RemoveKeysButton" to="." method="_on_remove_keys_button_pressed"]

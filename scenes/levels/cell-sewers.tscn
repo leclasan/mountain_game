@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c0ujx1vgsx21f" path="res://black.jpg" id="2_e7dvl"]
 [ext_resource type="PackedScene" uid="uid://batludaaw1o6r" path="res://scenes/player/player.tscn" id="4_1yo64"]
 [ext_resource type="PackedScene" uid="uid://bmmriekc3ubgt" path="res://scenes/enviroment/tile_map.tscn" id="4_e7dvl"]
+[ext_resource type="PackedScene" uid="uid://i7eblyqb6uqg" path="res://scenes/UI/pause_menu.tscn" id="5_e8yad"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1e21"]
 size = Vector2(192, 20)
@@ -49,6 +50,8 @@ layer_0/tile_data = PackedInt32Array(2424835, 1048578, 7, 2359299, 2, 8, 2293763
 [node name="Camera2D" type="Camera2D" parent="." unique_id=758979777]
 limit_left = 0
 limit_bottom = 0
+
+[node name="PauseMenu" parent="Camera2D" unique_id=37323417 instance=ExtResource("5_e8yad")]
 
 [connection signal="body_entered" from="LevelExit1" to="." method="on_body_entered_exit_1"]
 [connection signal="body_entered" from="LevelExit2" to="." method="on_body_entered_exit_2"]

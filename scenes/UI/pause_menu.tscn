@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://i7eblyqb6uqg"]
+
+[ext_resource type="Script" uid="uid://dnwr0713eu2h5" path="res://scripts/UI/pause_menu.gd" id="1_qo2fb"]
+
+[node name="PauseMenu" type="Control" unique_id=37323417]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qo2fb")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=956211407]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.28235295, 0.28235295, 0.28235295, 0.78431374)
+
+[node name="ContinueButton" type="Button" parent="ColorRect" unique_id=2095647977]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.5
+offset_top = -144.0
+offset_right = 96.5
+offset_bottom = -78.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 42
+text = "Continue"
+
+[node name="SettingsButton" type="Button" parent="ColorRect" unique_id=1985946346]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -93.5
+offset_top = -33.0
+offset_right = 93.5
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 42
+text = "Settings"
+
+[node name="MainMenuButton" type="Button" parent="ColorRect" unique_id=60371428]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -119.0
+offset_top = 85.0
+offset_right = 119.0
+offset_bottom = 151.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 42
+text = "Main menu"
+
+[connection signal="pressed" from="ColorRect/ContinueButton" to="." method="_on_continue_button_pressed"]

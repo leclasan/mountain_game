@@ -119,7 +119,6 @@ func move():
 			position.y = move_toward(position.y, rope_pos.y, rope_speed * get_process_delta_time())
 			if (rope_pos - position).length() <= 5 :
 				state = States.FALLING
-				print("fall")
 			velocity = Vector2.ZERO
 
 func rope_detect_rotate():
@@ -127,18 +126,24 @@ func rope_detect_rotate():
 	if (rope_direction.x != 0.0) and (rope_direction.y != 0.0):
 		rope_direction = sign(rope_direction) * Vector2(100000,100000)
 	else:
-		rope_direction = sign(rope_direction) * Vector2(100000, 100000) * global_position
+		rope_direction = sign(rope_direction) * Vector2(100000, 100000) * abs(global_position)
 	if rope_direction:
 		rope_detect.look_at(rope_direction)
 	if Input.is_action_just_pressed("rope"):
 		if rope_detect.is_colliding():
-			rope_pos = rope_detect.get_collision_point()
+			var collision_normal = rope_detect.get_collision_normal()
+			collision_normal.x *= 11
+			collision_normal.y *= 30
+			rope_pos = rope_detect.get_collision_point() + collision_normal
 			state = States.ROPE
 		else:
 			rope_buffer = Time.get_ticks_msec()
 	elif Time.get_ticks_msec()-rope_buffer < buffer_time:
 		if rope_detect.is_colliding():
-			rope_pos = rope_detect.get_collision_point()
+			var collision_normal = rope_detect.get_collision_normal()
+			collision_normal.x *= 11
+			collision_normal.y *= 30
+			rope_pos = rope_detect.get_collision_point() + collision_normal
 			state = States.ROPE
 	
 
@@ -150,3 +155,16 @@ func _on_area_entered(area: Area2D) -> void:
 		else:
 			velocity.y = jump_speed 
 		state = States.FALLING
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is TileMap:
+		pass
+
+
+func _on_damage_area_area_entered(area: Area2D) -> void:
+	get_tree().reload_current_scene()
+
+
+func _on_damage_area_body_entered(body: Node2D) -> void:
+	get_tree().reload_current_scene()

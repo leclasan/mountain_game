@@ -1,27 +1,10 @@
 [gd_scene format=3 uid="uid://batludaaw1o6r"]
 
 [ext_resource type="Script" uid="uid://df036ojm3jj0v" path="res://scripts/player/player.gd" id="1_8afob"]
-[ext_resource type="Texture2D" uid="uid://f1180t77rsr0" path="res://assets/Particles/PNG (Transparent)/dirt_01.png" id="3_gmlin"]
 [ext_resource type="Texture2D" uid="uid://ttee7dt1qwxj" path="res://assets/Spritesheets/spritesheet-characters-default.png" id="3_lvxji"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_isqir"]
-size = Vector2(22, 60)
-
-[sub_resource type="Curve" id="Curve_gmlin"]
-_limits = [-200.0, 200.0, 0.0, 1.0]
-_data = [Vector2(0, 10), 0.0, 0.0, 0, 0, Vector2(0.7, 10), 0.0, 0.0, 0, 0, Vector2(0.8, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), -112.71552, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_gcupy"]
-curve = SubResource("Curve_gmlin")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0owmy"]
-particle_flag_disable_z = true
-particle_flag_inherit_emitter_scale = true
-gravity = Vector3(0, 0, 0)
-linear_accel_min = -2.2351742e-06
-linear_accel_max = 9.999997
-linear_accel_curve = SubResource("CurveTexture_gcupy")
+size = Vector2(22, 50.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p47bc"]
 atlas = ExtResource("3_lvxji")
@@ -119,32 +102,42 @@ animations = [{
 [node name="Player" type="CharacterBody2D" unique_id=1262118459]
 z_index = 50
 collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_8afob")
+metadata/_edit_vertical_guides_ = [-25.0, -11.0]
+metadata/_edit_horizontal_guides_ = [-30.0]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1619552734]
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_isqir")
 
 [node name="RopeDetect" type="RayCast2D" parent="." unique_id=229005108]
 target_position = Vector2(250, 0)
+collision_mask = 9
 collide_with_areas = true
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1567391086]
+[node name="NormalArea" type="Area2D" parent="." unique_id=1567391086]
 collision_layer = 0
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=698990520]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="NormalArea" unique_id=698990520]
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_isqir")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1290440507]
-scale = Vector2(0.05, 0.05)
-emitting = false
-amount = 1
-texture = ExtResource("3_gmlin")
-process_material = SubResource("ParticleProcessMaterial_0owmy")
+[node name="DamageArea" type="Area2D" parent="." unique_id=1075405104]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="DamageArea" unique_id=1431410084]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_isqir")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=30404501]
-position = Vector2(-1.5000007, -9.999999)
-scale = Vector2(0.2890625, 0.625)
+position = Vector2(-1.5000007, -3.9999993)
+scale = Vector2(0.2890625, 0.53125)
 sprite_frames = SubResource("SpriteFrames_isqir")
 animation = &"walking"
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
+[connection signal="area_entered" from="NormalArea" to="." method="_on_area_entered"]
+[connection signal="body_entered" from="NormalArea" to="." method="_on_area_2d_body_entered"]
+[connection signal="area_entered" from="DamageArea" to="." method="_on_damage_area_area_entered"]
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

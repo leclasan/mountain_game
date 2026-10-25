@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dajyhv38krgqv" path="res://scripts/levels/level.gd" id="1_yt2eu"]
 [ext_resource type="PackedScene" uid="uid://bq3p5vikakhbs" path="res://scenes/enemies/enemy_1.tscn" id="2_ux6uk"]
 [ext_resource type="PackedScene" uid="uid://bmmriekc3ubgt" path="res://scenes/enviroment/tile_map.tscn" id="3_q632e"]
+[ext_resource type="PackedScene" uid="uid://i7eblyqb6uqg" path="res://scenes/UI/pause_menu.tscn" id="5_hxxnj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tmu1n"]
 size = Vector2(14, 93)
@@ -44,6 +45,8 @@ position = Vector2(12.5, 601.5)
 shape = SubResource("RectangleShape2D_hxxnj")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1649488513]
+
+[node name="PauseMenu" parent="Camera2D" unique_id=37323417 instance=ExtResource("5_hxxnj")]
 
 [connection signal="body_entered" from="LevelExit1" to="." method="on_body_entered_exit_1"]
 [connection signal="body_entered" from="LevelExit2" to="." method="on_body_entered_exit_2"]
